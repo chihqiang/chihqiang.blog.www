@@ -1,0 +1,26 @@
+name: deploy-gh-page
+on:
+ workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clone public repo via HTTPS
+      uses: chihqiang/checkout-action@main
+      with:
+        repo: ${{ secrets.PRIVATE_REPO }}
+        branch: main
+        token: ${{ secrets.GH_TOKEN }}
+    - name: Use Node.js 20
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+    - name: build projiect 
+      run: cd repo && npm install -g hexo-cli@4.3.2 && npm install --force && git clone https://github.com/chihqiang/hexo-theme-xianxin.git themes/xianxin && npm run build
+    - name: Publish to gh-pages branch
+      uses: chihqiang/gh-pages-action@main
+      with:
+        publish_dir: repo/public
+        target_branch: gh-pages
+        cname: www.zhiqiang.wang
+        token: ${{ secrets.GH_TOKEN }}
