@@ -15,8 +15,8 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 20
-    - name: build projiect 
-      run: cd repo && npm install -g hexo-cli@4.3.2 && npm install --force && git clone https://github.com/chihqiang/hexo-theme-xianxin.git themes/xianxin && npm run build
+    - name: hexo build 
+      run: cd repo && make build
     - name: Publish to gh-pages branch
       uses: chihqiang/gh-pages-action@main
       with:
