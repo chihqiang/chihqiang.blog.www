@@ -1,2 +1,2 @@
-# chihqiang.github.io
-my blog
+# chihqiang.blog.www
+[www.zhiqiang,wang](https://www.zhiqiang.wang/)
